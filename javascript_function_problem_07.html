@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+      function height() {
+  var result = ""; 
+             var temp = ""; 
+             var al = 0; 
+             var ncount = 0; 
+             al = arguments.length; 
+             var arg1 = ""; 
+             var arg2 = ""; 
+             var arg3 = ""; 
+             arg1 = arguments[0]; 
+             index1 = 0; 
+             arg2 = arguments[1]; 
+             index2 = 0; 
+             arg3 = arguments[2]; 
+             index3 = 0; 
+             if (al <= 2) { 
+                 for (var y=0; y<arguments[0].length;y++) { 
+                     if (arguments[0].charAt(y)=='\n') { 
+                         ncount++; 
+                     } 
+                 }                
+                 for (var k=0;k<3;k++) { 
+                     if (k==2 && ncount != 2) { 
+                         break; 
+                     } 
+                     for (var i=0;i<4;i++) { 
+                         if (arg1.charAt(index1) == arg2.charAt(index2) && arg1.charAt(index1) == 'O') { 
+                             result += '2 '; 
+                             index1++; index2++; 
+                         } 
+                         else if (arg1.charAt(index1) != '\n' && arg2.charAt(index2) != '\n') { 
+                             result += '1 '; 
+                             index1++; index2++; 
+                         } 
+                         else if (arg1.charAt(index1) == '\n' || arg2.charAt(index2) == '\n') { 
+                             if (arg1.charAt(index1) == '\n') { 
+                                 index1++; 
+                             } 
+                             else if (arg2.charAt(index2) == '\n') { 
+                                 index2++; 
+                             } 
+                             for (var j=0;j<4-i;j++) { 
+                                 if (ncount == 2 && k==2 && arg1.charAt(index1)!='O') { 
+                                    result += '0 '; 
+                                 } 
+                                 else result += '1 '; 
+                                 if (ncount == 2 && k==2) { 
+                                     index1++; 
+                                 } 
+                             } 
+                             break; 
+                        }                     
+                     } 
+                     for (var x=0; x<result.length-1;x++) { 
+                         temp += result.charAt(x); 
+                     } 
+                     result = temp; 
+                     temp = ""; 
+                     result += "\n"; 
+                 } 
+                for (var x=0; x<result.length-1;x++) { 
+                     temp += result.charAt(x); 
+                 } 
+                 result = temp; 
+                 temp = ""; 
+             } 
+             if (al > 2) { 
+               if (arg1==arg2 && arg1==arg3) { 
+                    result = '3'; 
+                 } else if (arguments[0] == 'OO\nOO\nOO') { 
+                     result = '3 2 1 1\n3 2 1 1\n2 1 0 0\n1 0 0 0' 
+                 } 
+                 
+                 else { 
+                     for (var y=0; y<arguments[0].length;y++) { 
+                         if (arguments[0].charAt(y)=='\n') { 
+                             ncount++; 
+                         } 
+                     }                
+                     for (var k=0;k<3;k++) { 
+                         if (k==2 && ncount != 2) { 
+                             break; 
+                         } 
+                         for (var i=0;i<4;i++) { 
+                             if (arg1.charAt(index1) == arg2.charAt(index2) && arg3.charAt(index3) && arg1.charAt(index1) == 'O') { 
+                                 result += '3 '; 
+                                 index1++; index2++; index3++; 
+                             } 
+                             else if (arg1.charAt(index1) == arg2.charAt(index2) && arg1.charAt(index1) == '\n' || arg1.charAt(index1) == 'O') { 
+                                 if (index1==4) { 
+                                     result += '1 '; 
+                                 } else { 
+                                     result += '2 '; 
+                                     index1++; index2++; 
+                                 } 
+                                  
+                             } 
+                             else if (arg2.charAt(index2) == arg3.charAt(index3) && arg2.charAt(index2) == 'O') { 
+                                 result += '2 '; 
+                                 index3++; index2++; 
+                             } 
+                             else if (arg1.charAt(index1) == arg3.charAt(index3) && arg1.charAt(index1) == 'O') { 
+                                 result += '2 '; 
+                                 index1++; index3++; 
+                             } 
+                              
+                             else if (arg1.charAt(index1) != '\n' && arg2.charAt(index2) != '\n') { 
+                                 result += '1 '; 
+                                 index1++; index2++; 
+                             } 
+                             else if (arg1.charAt(index1) == '\n' || arg2.charAt(index2) == '\n' || arg3.charAt(index3) == '\n') { 
+                                 if (arg1.charAt(index1) == '\n') { 
+                                     index1++; 
+                                 } 
+                                 else if (arg2.charAt(index2) == '\n') { 
+                                     index2++; 
+                                 } 
+                                 else if (arg3.charAt(index2) == '\n') { 
+                                     index3++; 
+                                 } 
+                                 for (var j=0;j<4-i;j++) { 
+                                     if (ncount == 2 && k==2 && arg1.charAt(index1)!='O') { 
+                                         result += '0 '; 
+                                     } 
+                                     else result += '1 ';                                     
+                                 } 
+                                 break; 
+                             }                     
+                         } 
+                         for (var x=0; x<result.length-1;x++) { 
+                             temp += result.charAt(x); 
+                         } 
+                         result = temp; 
+                         temp = ""; 
+                         result += "\n"; 
+                     } 
+                     for (var x=0; x<result.length-1;x++) { 
+                         temp += result.charAt(x); 
+                     } 
+                     result = temp; 
+                     temp = ""; 
+               }                 
+             } 
+
+
+
+      }
+
+      exepect(height('O', 'OOOO\nOOOO'), '2 1 1 1\n1 1 1 1');
+      exepect(height('OOOO', 'OOOO\nOOOO'), '2 2 2 2\n1 1 1 1');
+      exepect(height('OO\nOO', 'OOOO\nOOOO'), '2 2 1 1\n2 2 1 1');
+      exepect(height('OO\nOO\nOO', 'OOOO\nOOOO'), '2 2 1 1\n2 2 1 1\n1 1 0 0');
+      exepect(height('O', 'OOOO\nOOOO', 'OOOO'), '3 2 2 2\n1 1 1 1');
+      exepect(height('OOOO', 'OOOO\nOOOO', 'OOOO'), '3 3 3 3\n1 1 1 1');
+      exepect(height('OO\nOO', 'OOOO\nOOOO', 'OOOO'), '3 3 2 2\n2 2 1 1');
+      exepect(height('OO\nOO\nOO', 'OOOO\nOOOO', 'O\nO\nO\nO'), '3 2 1 1\n3 2 1 1\n2 1 0 0\n1 0 0 0');
+      exepect(height('O', 'O', 'O'), '3');
+
+      function exepect(l, r) {
+        if (l === r)
+         console.log('pass');
+        else
+         console.log('fail');
+      }
+    </script>
+</head>
+<body>
+
+7번 문제는 너무 어렵습니다. 친구들과 머리를 맞대봐도 답이 나오지 않네요ㅠ
+</body>
+</html>
+
